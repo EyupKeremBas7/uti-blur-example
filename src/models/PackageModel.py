@@ -1,8 +1,6 @@
-
 from pydantic import Field, validator
 from typing import List, Optional, Union, Literal
 from sdks.novavision.src.base.model import Package, Image, Inputs, Configs, Outputs, Response, Request, Output, Input, Config
-
 
 class InputImage(Input):
     name: Literal["inputImage"] = "inputImage"
@@ -26,6 +24,7 @@ class OutputImage(Output):
     value: Union[List[Image],Image]
     type: str = "object"
 
+
     @validator("type", pre=True, always=True)
     def set_type_based_on_value(cls, value, values):
         value = values.get('value')
@@ -36,7 +35,6 @@ class OutputImage(Output):
 
     class Config:
         title = "Image"
-
 
 class KeepSideFalse(Config):
     name: Literal["False"] = "False"
@@ -70,7 +68,6 @@ class KeepSideBBox(Config):
     class Config:
         title = "Keep Sides"
 
-
 class Degree(Config):
     """
         Positive angles specify counterclockwise rotation while negative angles indicate clockwise rotation.
@@ -85,36 +82,32 @@ class Degree(Config):
         title = "Angle"
 
 
-class PackageInputs(Inputs):
+class BlurExampleExecuterInputs(Inputs):
     inputImage: InputImage
 
-
-class PackageConfigs(Configs):
+class BlurExampleExecuterConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
 
-
-class PackageOutputs(Outputs):
-    outputImage: OutputImage
-
-
-class PackageRequest(Request):
-    inputs: Optional[PackageInputs]
-    configs: PackageConfigs
+class BlurExampleExecuterRequest(Request):
+    inputs: Optional[BlurExampleExecuterInputs]
+    configs: BlurExampleExecuterConfigs
 
     class Config:
         json_schema_extra = {
             "target": "configs"
         }
 
+class BlurExampleExecuterOutputs(Outputs):
+    outputImage: OutputImage
 
-class PackageResponse(Response):
-    outputs: PackageOutputs
+class BlurExampleExecuterResponse(Response):
+    outputs: BlurExampleExecuterOutputs
 
 
-class PackageExecutor(Config):
-    name: Literal["Package"] = "Package"
-    value: Union[PackageRequest, PackageResponse]
+class BlurExampleExecuter(Config):
+    name: Literal["BlurExampleExecuter"] = "BlurExampleExecuter"
+    value: Union[BlurExampleExecuterRequest, BlurExampleExecuterResponse]
     type: Literal["object"] = "object"
     field: Literal["option"] = "option"
 
@@ -126,10 +119,9 @@ class PackageExecutor(Config):
             }
         }
 
-
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
-    value: Union[PackageExecutor]
+    value: Union[BlurExampleExecuter]
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
 
@@ -139,12 +131,10 @@ class ConfigExecutor(Config):
             "target": "value"
         }
 
-
 class PackageConfigs(Configs):
     executor: ConfigExecutor
-
 
 class PackageModel(Package):
     configs: PackageConfigs
     type: Literal["component"] = "component"
-    name: Literal["BlurExample"] = "Package"
+    name: Literal["BlurExample"] = "BlurExample"
