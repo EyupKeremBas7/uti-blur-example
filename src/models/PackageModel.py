@@ -79,7 +79,35 @@ class Degree(Config):
     placeHolder: Literal["[-359, 359]"] = "[-359, 359]"
 
     class Config:
-        title = "Angleeee"
+        title = "Angle"
+
+class OptionTrue(Config):
+    name: Literal["OptionTrue"] = "OptionTrue"
+    value: Literal[True] = True
+    type: Literal["bool"] = "bool"
+    field: Literal["option"] = "option"
+ 
+    class Config:
+        title="Enable"
+
+class OptionFalse(Config):
+    name: Literal["OptionFalse"] = "OptionFalse"
+    value: Literal[False] = False
+    type: Literal["bool"] = "bool"
+    field: Literal["option"] = "option"
+ 
+    class Config:
+        title="Disable"
+
+class Example1(Config):
+    name: Literal["Example1"] = "Example1"
+    value: float
+    type: Literal["number"] = "number"
+    field: Literal["textInput"] = "textInput"
+ 
+    class Config:
+        title="Example1"
+
 
 
 class BlurExampleExecuterInputs(Inputs):
