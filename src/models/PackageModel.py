@@ -79,7 +79,7 @@ class Degree(Config):
     placeHolder: Literal["[-359, 359]"] = "[-359, 359]"
 
     class Config:
-        title = "Angle"
+        title = "Angleeee"
 
 
 class BlurExampleExecuterInputs(Inputs):
