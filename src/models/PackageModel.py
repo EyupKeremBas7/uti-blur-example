@@ -49,25 +49,11 @@ class Blur(Config):
     class Config:
         title = "Blur"
 
-class KeepSide(Config):
-    """
-        Keep side configuration
-    """
-    name: Literal["KeepSide"] = "KeepSide"
-    value: bool = False
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
-
-    class Config:
-        title = "KeepSide"
-
-
 class BlurExampleExecuterInputs(Inputs):
     inputImage: InputImage
 
 class BlurExampleExecuterConfigs(Configs):
     blur: Blur
-    drawBBox: KeepSide
 
 class BlurExampleExecuterRequest(Request):
     inputs: Optional[BlurExampleExecuterInputs]
@@ -83,6 +69,7 @@ class BlurExampleExecuterOutputs(Outputs):
 
 class BlurExampleExecuterResponse(Response):
     outputs: BlurExampleExecuterOutputs
+
 
 class BlurExampleExecuter(Config):
     name: Literal["BlurExampleExecuter"] = "BlurExampleExecuter"
