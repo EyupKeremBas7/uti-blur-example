@@ -19,8 +19,11 @@ class BlurExampleExecuter(Component):
     def __init__(self, request, bootstrap):
         super().__init__(request, bootstrap)
         self.request.model = PackageModel(**(self.request.data))
-        self.blur_intensity = self.request.get_param("Blur")
+        self.rotation_degree = self.request.get_param("Degree")
+        self.keep_side = self.request.get_param("KeepSide")
         self.image = self.request.get_param("inputImage")
+        print(self.rotation_degree)
+        print(self.keep_side)
 
     @staticmethod
     def bootstrap(config: dict) -> dict:
