@@ -4,7 +4,7 @@ from components.BlurExample.src.models.PackageModel import PackageModel, Package
 
 def build_response(context):
     outputImage = OutputImage(value=context.image)
-    blurExampleOutputs = BlurExampleExecuterOutputs(outputImage=outputImage)  # Burada hata vardı
+    blurExampleOutputs = BlurExampleExecuterOutputs(outputImage=outputImage)  
     blurExampleExecuterResponse = BlurExampleExecuterResponse(outputs=blurExampleOutputs)
     blurExampleExecutor = BlurExampleExecuter(value=blurExampleExecuterResponse)
     executor = ConfigExecutor(value=blurExampleExecutor)
