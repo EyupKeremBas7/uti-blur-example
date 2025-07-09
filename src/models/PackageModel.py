@@ -36,24 +36,24 @@ class OutputImage(Output):
     class Config:
         title = "Image"
 
-class Degree(Config):
+class Blur(Config):
     """
-        Positive angles specify counterclockwise rotation while negative angles indicate clockwise rotation.
+        Applies a blur to the image based on the given percentage.
     """
-    name: Literal["Degree"] = "Degree"
-    value: int = Field(ge=-359.0, le=359.0,default=0)
+    name: Literal["Blur"] = "Blur"
+    value: int = Field(ge=0, le=100.0,default=0)
     type: Literal["number"] = "number"
     field: Literal["textInput"] = "textInput"
-    placeHolder: Literal["[-359, 359]"] = "[-359, 359]"
+    placeHolder: Literal["[0,100]"] = "[0,100]"
 
     class Config:
-        title = "Angleeeeeeeeeeeeeeeeeeeeeeee"
+        title = "Blur"
 
 class BlurExampleExecuterInputs(Inputs):
     inputImage: InputImage
 
 class BlurExampleExecuterConfigs(Configs):
-    degree: Degree
+    blur: Blur
 
 class BlurExampleExecuterRequest(Request):
     inputs: Optional[BlurExampleExecuterInputs]
