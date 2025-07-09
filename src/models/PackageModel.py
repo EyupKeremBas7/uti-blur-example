@@ -36,38 +36,6 @@ class OutputImage(Output):
     class Config:
         title = "Image"
 
-class KeepSideFalse(Config):
-    name: Literal["False"] = "False"
-    value: Literal[False] = False
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
-
-    class Config:
-        title = "Disable"
-
-
-class KeepSideTrue(Config):
-    name: Literal["True"] = "True"
-    value: Literal[True] = True
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
-
-    class Config:
-        title = "Enable"
-
-
-class KeepSideBBox(Config):
-    """
-        Rotate image without catting off sides.
-    """
-    name: Literal["KeepSide"] = "KeepSide"
-    value: Union[KeepSideTrue, KeepSideFalse]
-    type: Literal["object"] = "object"
-    field: Literal["dropdownlist"] = "dropdownlist"
-
-    class Config:
-        title = "Keep Sides"
-
 class Degree(Config):
     """
         Positive angles specify counterclockwise rotation while negative angles indicate clockwise rotation.
@@ -80,35 +48,6 @@ class Degree(Config):
 
     class Config:
         title = "Angleeeeeeeeeeeeeeeeeeeeeeee"
-
-class OptionTrue(Config):
-    name: Literal["OptionTrue"] = "OptionTrue"
-    value: Literal[True] = True
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
- 
-    class Config:
-        title="Enable"
-
-class OptionFalse(Config):
-    name: Literal["OptionFalse"] = "OptionFalse"
-    value: Literal[False] = False
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
- 
-    class Config:
-        title="Disable"
-
-class Example1(Config):
-    name: Literal["Example1"] = "Example1"
-    value: float
-    type: Literal["number"] = "number"
-    field: Literal["textInput"] = "textInput"
- 
-    class Config:
-        title="Example1"
-
-
 
 class BlurExampleExecuterInputs(Inputs):
     inputImage: InputImage
