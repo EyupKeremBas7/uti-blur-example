@@ -54,6 +54,7 @@ class BlurExampleExecuterInputs(Inputs):
 
 class BlurExampleExecuterConfigs(Configs):
     degree: Degree
+    drawBBox: KeepSideBBox
 
 class BlurExampleExecuterRequest(Request):
     inputs: Optional[BlurExampleExecuterInputs]
