@@ -15,7 +15,7 @@ from components.BlurExample.src.utils.response import build_response
 from components.BlurExample.src.models.PackageModel import PackageModel
 
 
-class BlurExampleExecuter(Component):
+class GaussianBlurExecuter(Component):
     def __init__(self, request, bootstrap):
         super().__init__(request, bootstrap)
         self.request.model = PackageModel(**(self.request.data))
@@ -27,16 +27,16 @@ class BlurExampleExecuter(Component):
         sayac = 0
         return {"sayac" : sayac}
     
-    def blur(self, image): 
+    def gaussianBlur(self, image): 
         """
             Blurring the images
         """
 
-        return cv2.blur(image,(10,10))
+        return cv2.GaussianBlur(image, (5,5),0) 
     
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)
-        img.value = self.blur(img.value)
+        img.value = self.gaussianBlur(img.value)
         self.image = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         packageModel = build_response(context=self)
         self.bootstrap["sayac"] += 1
