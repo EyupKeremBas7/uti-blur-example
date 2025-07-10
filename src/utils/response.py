@@ -1,5 +1,5 @@
 from sdks.novavision.src.helper.package import PackageHelper
-from components.BlurExample.src.models.PackageModel import PackageModel, PackageConfigs, ConfigExecutor, BlurExampleExecuterResponse, BlurExampleExecuter, OutputImage, BlurExampleExecuterOutputs
+from components.BlurExample.src.models.PackageModel import PackageModel, PackageConfigs, ConfigExecutor, BlurExampleResponse, BlurExampleExecuter, OutputImage, BlurExampleExecuterOutputs
 
 
 def build_response(context):
